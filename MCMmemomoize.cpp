@@ -5,6 +5,7 @@ using namespace std;
 
 // i-> Start index , j-> End index, number of matrices whose muktilication is deone in cost(i,j) is
 // j-i+1
+// solve(i,j,A) => min cost to multiply j-i+1 matrices , A- > dimension matrix , Dimesion of ith matrix is A[i-1]xA[i]
 int costMemoization(int i,int j,int* A)
 {
     if(i==j) // => Single matrix thus cost wil be 0 of operations to multiply a single matrix
@@ -17,6 +18,9 @@ int costMemoization(int i,int j,int* A)
   for(int k=i;k<=j-1;k++)
   {
       int tempCost=costMemoization(i,k,A)+costMemoization(k+1,j,A)+A[i-1]*A[k]*A[j];
+      // cost(i,k,A) -> (AB)(CDE..) represents the (AB)-> cost with pratitin size increasing
+      // cost(k+1,j,A) -> represents cost to multiply (CDE) 
+      // Now cost to muliplty (AB) x (CDE) is A[i-1]*A[k]*A[j]
       if(tempCost<minValue)
       {
           minValue=tempCost;

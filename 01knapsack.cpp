@@ -32,7 +32,7 @@ int main()
         {
             if(i==0||j==0)
             {
-                dp[i][j]=0;
+                dp[i][j]=0;  // dp[i][j]-> reprsenst max profit considering items at ith row and above and capacity of knapsack being j
             }
             else if(weight[i-1]>j) // i.e weight of current object iss greater tan capacity of knapsack => exclude the current object
             {
@@ -52,5 +52,8 @@ int main()
         delete [] dp[i];
     }
     delete [] dp;
+    delete [] profit;
+    delete [] weight;
     
 }
+
